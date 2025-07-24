@@ -1,0 +1,43 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# === Output ===
+**/dist/
+**/tmp/
+**/out-tsc/
+**/.angular/cache/
+/data/
+
+# === Node ===
+**/node_modules/
+npm-debug.log
+yarn-error.log
+
+# === IDEs ===
+**/.idea/
+**/.vscode/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# === Angular-specific ===
+connect.lock
+coverage/
+libpeerconnection.log
+testem.log
+typings/
+
+# === VS Code settings (override optional)
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# === System files ===
+.DS_Store
+Thumbs.db
+/target/
+*.class
+*.lst
