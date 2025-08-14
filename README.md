@@ -30,7 +30,7 @@ To use SEP-Drive smoothly, your system should meet the following minimum require
   - Docker Compose: Already included in Docker Desktop
 
 ### 2. Download the Project
-- Download the project from Sciebo.
+- Download the sep-drive-all-x86.tar and docker-compose.yml files.
 
 ### 3. Build Docker Containers
 1. Open a terminal and navigate to the downloaded folder.
