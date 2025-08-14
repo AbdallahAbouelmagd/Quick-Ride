@@ -54,7 +54,6 @@ To use SEP-Drive smoothly, your system should meet the following minimum require
 - The application will run at:
   - **Frontend**: [http://localhost:4200](http://localhost:4200)
   - **Backend**: [http://localhost:8080](http://localhost:8080)
-- Recommended: Use browser in **Incognito mode**.
 
 ### 5. Using the Application
 - Open [http://localhost:4200](http://localhost:4200)
