@@ -1,93 +1,200 @@
-# Gruppe Q
+# Quick-Ride User Manual
 
+## Technical Requirements
 
+To use SEP-Drive smoothly, your system should meet the following minimum requirements:
 
-## Getting started
+### 1. Hardware
+- **RAM**: 2 GB (Recommended: 4 GB for smooth usage)
+- **Processor**: Dual-Core (2.5 GHz or faster)
+- **Storage**: 1 GB available for data and temporary storage
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### 2. Software
+#### Backend
+- Java 17 or higher
+- Maven 3.8+ (to build the project)
+- Docker (for containerization)
+- Docker Compose (to orchestrate frontend, backend, and database)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+#### Frontend
+- Node.js (v16 or higher)
+- npm (Node Package Manager)
 
-## Add your files
+---
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Installation Guide
 
-```
-cd existing_repo
-git remote add origin https://git.uni-due.de/sep/sommersemester_2025/gruppe-q-t/gruppe-q.git
-git branch -M main
-git push -uf origin main
-```
+### 1. Prerequisites
+- Ensure **Docker** and **Docker Compose** are installed:
+  - Docker: [Download here](https://www.docker.com/products/docker-desktop)
+  - Docker Compose: Already included in Docker Desktop
 
-## Integrate with your tools
+### 2. Download the Project
+- Download the project from Sciebo.
 
-- [ ] [Set up project integrations](https://git.uni-due.de/sep/sommersemester_2025/gruppe-q-t/gruppe-q/-/settings/integrations)
+### 3. Build Docker Containers
+1. Open a terminal and navigate to the downloaded folder.
+2. Load the images:
+   ```bash
+   docker load -i sep-drive-all-x86.tar
+   ```
+3. Wait until you see:
+   ```
+   Loaded image: sep-drive-backend:latest
+   Loaded image: sep-drive-frontend:latest
+   ```
+4. Start the containers:
+   ```bash
+   docker-compose up
+   ```
+5. Wait until **both frontend and backend** are running.  
+   _Running only one of them may cause errors._
 
-## Collaborate with your team
+### 4. Start the Application
+- The application will run at:
+  - **Frontend**: [http://localhost:4200](http://localhost:4200)
+  - **Backend**: [http://localhost:8080](http://localhost:8080)
+- Recommended: Use browser in **Incognito mode**.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### 5. Using the Application
+- Open [http://localhost:4200](http://localhost:4200)
+- You can register, log in, and create rides.
 
-## Test and Deploy
+---
 
-Use the built-in continuous integration in GitLab.
+## User Guide
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### 1. Registration
+- Click **"Login"** on the navigation bar.
+- In the login window, click **"Register here"**.
+- Fill in required fields:
+  - Username, First Name, Last Name, Email, Date of Birth, Password
+- Select your role:
+  - Customer or Driver
+- (Optional) Upload a `.jpeg` profile picture.
+- Click **"Register"**.
 
-***
+### 2. Login
+- Click **"Login"** on the navigation bar.
+- Enter username and password.
+- A verification code will be sent via email.
+- Enter the code and log in.
+  - **Test Super-Code**: `super1`
 
-# Editing this README
+### 3. Profile Management
+- Click your username in the navigation bar.
+- View:
+  - First Name, Last Name, Role, Ratings, Number of Rides
+  - (Drivers) Car Class
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 4. Requesting a Ride (Customer)
+#### Creating a Request
+1. Click **"Request Ride"**.
+2. Enter start, destination, and optional stopovers:
+   - via location search OR
+   - via coordinates
+3. Select vehicle type:
+   - Small, Medium, Large
+4. Click **"Submit Request"**.
+5. Wait for driver offers.
 
-## Suggestions for a good README
+#### Accepting an Offer
+- Notification appears at bottom of page.
+- Click **"View Offer"** for details.
+- Click **"Accept Offer"** to start ride simulation.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### 5. Offering a Ride (Driver)
+#### Sending an Offer
+1. Click **"View Requests"**.
+2. Enter your position.
+3. View and sort available requests.
+4. Select a request and click **"Send Offer"**.
 
-## Name
-Choose a self-explaining name for your project.
+#### Response to Offers
+- If rejected: Notification appears at bottom of page.
+- If accepted: Driver is redirected to ride simulation.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### 6. Ride Simulation
+- Click **"Active Simulation"**.
+- Map shows route with start, destination, and stopovers.
+- Controls:
+  - **Start** – begin simulation
+  - **Resume** – continue paused simulation
+  - **Pause** – pause simulation
+  - **Simulation Duration** – adjust simulation speed
+- Both customer and driver see simulation in real time.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+### 7. Changing Route During Simulation (Customer Only)
+- Pause the simulation to make changes.
+- **Add a Stop**:
+  - Use **"Add a new Stopover before: [Location]"**
+  - Choose the position in the route with the slider.
+- **Remove a Stop**:
+  - Click **"Remove Stopover"** under unvisited locations.
+- Changes automatically update the map, price, distance, and duration.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**Ending the Simulation**:
+1. Click **"Complete"** when:
+   - Destination is reached, OR  
+   - Remaining stops/destination are removed and current location becomes endpoint.
+2. Ensure sufficient wallet balance before completing.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+**Notes**:
+- If destination is reached but **"Please reach your Drop off..."** still shows, refresh the page.
+- If rating fails to complete the simulation, refresh and change the endpoint.
+- Do not remove pickup location even if it appears removable.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### 8. Ride Rating
+- After completion, a popup **"Rate your Driver/Customer"** appears.
+- Give a rating and click **"Submit"**.
+- Rating is saved and linked to the ride.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### 9. Chat
+**Conditions**:
+- Customer has made a request.
+- Driver has sent an offer.
+- Offer is not yet accepted or rejected.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**Usage**:
+- **"Chat"** button appears for both customer and driver.
+- Click to open chat window.
+- Exchange messages until offer is accepted/rejected.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+### 10. Leaderboard
+**Search**:
+- Search bar at top to find a specific user by username.
+- List filters automatically.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+**Ranking Criteria**:
+- Username
+- Rides – total completed rides
+- Distance (km) – total distance driven
+- Money (€) – total earnings
+- Rating – average user rating
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+**Sorting**:
+- Click column headers to sort ascending/descending.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+**Details**:
+- Click a user to view rides and ratings.
 
-## License
-For open source projects, say how it is licensed.
+### 11. Graphical Statistics
+**Access**:
+- Statistics page shows data for a current period (year or month).
 
-## Project simulationStatus
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Chart Types**:
+- Income
+- Distance
+- Ride Time
+- Rating
+
+**Modes**:
+- Monthly – aggregated per month
+- Daily – detailed daily data
+- Filters adjust automatically depending on selection.
+
+**Dynamic Updates**:
+- Any filter or chart change updates instantly.
+
+**Purpose**:
+- Helps drivers, customers, and admins analyze trends, performance, and development.
